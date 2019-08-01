@@ -5,7 +5,7 @@ import { generatePalette } from "./colorHelpers";
 
 function App() {
   console.log(generatePalette(seedColors[4]));
-  return <Palette {...seedColors[5]} />;
+  return <Palette palette={generatePalette(seedColors[4])} />;
 }
 
 export default App;
