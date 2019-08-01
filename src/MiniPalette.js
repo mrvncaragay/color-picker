@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/styles";
 const styles = {
   root: {
     backgroundColor: "white",
-    borederRadius: "5px",
+    borderRadius: "5px",
     padding: "0.5rem",
     position: "relative",
     overflow: "hidden",
@@ -12,9 +12,9 @@ const styles = {
       cursor: "pointer;"
     }
   },
-  colors: {
-    backgroundColor: "grey"
-  },
+
+  colors: {},
+
   title: {
     display: "flex",
     justifyContent: "space-between",
@@ -25,6 +25,7 @@ const styles = {
     fontSize: "1rem",
     position: "relative"
   },
+
   emoji: {
     marginLeft: "0.5rem",
     fontSize: "1.5rem"
