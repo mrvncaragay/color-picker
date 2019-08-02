@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import Navbar from "./Navbar";
+import PaletteFooter from "./PaletteFooter";
 import ColorBox from "./ColorBox";
 
 const SingleColorPalette = ({ palette, colorId }) => {
-  //const [shades, setShades] = useState();
+  const [format, setFormat] = useState("hex");
   let colors;
 
   const gatherShades = (palette, color) => {
@@ -27,24 +29,25 @@ const SingleColorPalette = ({ palette, colorId }) => {
 
   colors = gatherShades(palette, colorId);
 
-  /*eslint-disable */
-  useEffect(() => {
-    //setShades(gatherShades(palette, colorId));
-  }, []);
-  /*eslint-enable */
+  const changeFormat = val => {
+    setFormat(val);
+  };
 
   const colorBoxes = colors.map(color => (
     <ColorBox
       key={color.id}
       name={color.name}
-      background={color.hex}
+      background={color[format]}
       showLink={false}
     />
   ));
   return (
     <div className="Palette">
-      <h1> Single Palatte</h1>
+      <Navbar changeFormat={changeFormat} showAllColors={false} />
+
       <div className="Palette-colors">{colorBoxes}</div>
+
+      <PaletteFooter palette={palette} />
     </div>
   );
 };
