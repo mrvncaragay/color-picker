@@ -16,7 +16,7 @@ function App() {
 
   return (
     <Switch>
-      <Route exact path="/palette/new" render={NewPaletteForm} />
+      <Route exact path="/palette/new" component={NewPaletteForm} />
 
       <Route
         exact
