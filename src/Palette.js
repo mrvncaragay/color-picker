@@ -3,19 +3,9 @@ import ColorBox from "./ColorBox";
 import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
 import { withStyles } from "@material-ui/styles";
-import "./Palette.css";
 
-const styles = {
-  Palette: {
-    height: "100vh",
-    overflowY: "hidden",
-    overflowX: "hidden"
-  },
-
-  colors: {
-    height: "90%"
-  }
-};
+// Component styles
+import styles from "./styles/PaletteStyles";
 
 const Palette = ({ palette, classes }) => {
   const [level, setLevel] = useState(500);
