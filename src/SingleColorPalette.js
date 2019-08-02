@@ -42,6 +42,7 @@ const SingleColorPalette = ({ palette, colorId }) => {
       showLink={false}
     />
   ));
+
   return (
     <div className="SingleColorPalette Palette">
       <Navbar changeFormat={changeFormat} showAllColors={false} />
