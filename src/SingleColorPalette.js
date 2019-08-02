@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import PaletteFooter from "./PaletteFooter";
 import ColorBox from "./ColorBox";
@@ -13,7 +14,7 @@ const SingleColorPalette = ({ palette, colorId }) => {
     let cIndex = null;
 
     //Retrieve the position index
-    Object.keys(allColors[100]).map(key => {
+    Object.keys(allColors[100]).forEach(key => {
       if (allColors[100][key].id === color) {
         cIndex = key;
       }
@@ -35,17 +36,24 @@ const SingleColorPalette = ({ palette, colorId }) => {
 
   const colorBoxes = colors.map(color => (
     <ColorBox
-      key={color.id}
+      key={color.name}
       name={color.name}
       background={color[format]}
       showLink={false}
     />
   ));
   return (
-    <div className="Palette">
+    <div className="SingleColorPalette Palette">
       <Navbar changeFormat={changeFormat} showAllColors={false} />
 
-      <div className="Palette-colors">{colorBoxes}</div>
+      <div className="Palette-colors">
+        {colorBoxes}
+        <div className="go-back ColorBox">
+          <Link to={`/palette/${palette.id}`} className="back-button">
+            GO BACK
+          </Link>
+        </div>
+      </div>
 
       <PaletteFooter palette={palette} />
     </div>
