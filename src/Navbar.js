@@ -6,9 +6,18 @@ import { Snackbar } from "@material-ui/core";
 import { IconButton } from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
 import "rc-slider/assets/index.css";
-import "./Navbar.css";
+import { withStyles } from "@material-ui/styles";
 
-const Navbar = ({ level, changeLevel, changeFormat, showAllColors }) => {
+// Component styles
+import styles from "./styles/NavbarStyles";
+
+const Navbar = ({
+  level,
+  changeLevel,
+  changeFormat,
+  showAllColors,
+  classes
+}) => {
   const [format, setFormat] = useState("hex");
   const [open, setOpen] = useState(false);
 
@@ -23,15 +32,15 @@ const Navbar = ({ level, changeLevel, changeFormat, showAllColors }) => {
   };
 
   return (
-    <header className="Navbar">
-      <div className="logo">
+    <header className={classes.Navbar}>
+      <div className={classes.logo}>
         <Link to="/"> Color picker</Link>
       </div>
 
       {showAllColors && (
-        <div className="slider-container">
+        <div>
           <span>Level: {level}</span>
-          <div className="slider">
+          <div className={classes.slider}>
             <Slider
               defaultValue={level}
               min={100}
@@ -43,7 +52,7 @@ const Navbar = ({ level, changeLevel, changeFormat, showAllColors }) => {
         </div>
       )}
 
-      <div className="select-container">
+      <div className={classes.selectContainer}>
         <Select value={format} onChange={handleChangeFormat}>
           <MenuItem value="hex">HEX - #fffff</MenuItem>
           <MenuItem value="rgb">RGB - rgb(255, 255, 255)</MenuItem>
@@ -75,4 +84,4 @@ const Navbar = ({ level, changeLevel, changeFormat, showAllColors }) => {
   );
 };
 
-export default Navbar;
+export default withStyles(styles)(Navbar);
