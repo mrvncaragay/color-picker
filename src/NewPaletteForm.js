@@ -73,14 +73,24 @@ const styles = theme => ({
 
 const NewPaletteForm = ({ classes }) => {
   const [open, setOpen] = useState(false);
+  const [color, setColor] = useState("teal");
+  const [colors, setColors] = useState(["red", "gray"]);
 
-  function handleDrawerOpen() {
+  const handleDrawerOpen = () => {
     setOpen(true);
-  }
+  };
 
-  function handleDrawerClose() {
+  const handleDrawerClose = () => {
     setOpen(false);
-  }
+  };
+
+  const updateColor = color => {
+    setColor(color.hex);
+  };
+
+  const addNewColor = () => {
+    setColors([...colors, color]);
+  };
 
   return (
     <div className={classes.root}>
@@ -133,12 +143,14 @@ const NewPaletteForm = ({ classes }) => {
           </Button>
         </div>
 
-        <ChromePicker
-          color="purple"
-          onChangeComplete={newColor => console.log(newColor)}
-        />
+        <ChromePicker color={color} onChangeComplete={updateColor} />
 
-        <Button variant="contained" color="primary">
+        <Button
+          onClick={addNewColor}
+          variant="contained"
+          color="primary"
+          style={{ backgroundColor: color }}
+        >
           Add Color
         </Button>
       </Drawer>
@@ -148,6 +160,11 @@ const NewPaletteForm = ({ classes }) => {
         })}
       >
         <div className={classes.drawerHeader} />
+        <ul>
+          {colors.map(color => (
+            <li>{color}</li>
+          ))}
+        </ul>
       </main>
     </div>
   );
