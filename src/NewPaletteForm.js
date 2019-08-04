@@ -123,6 +123,11 @@ const NewPaletteForm = ({ palettes, classes, savePalette, history }) => {
     history.push("/");
   };
 
+  const handleDelete = colorName => {
+    const newColors = colors.filter(color => color.name !== colorName);
+    setColors([...newColors]);
+  };
+
   useEffect(() => {
     ValidatorForm.addValidationRule("isColorNameUnique", value =>
       colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase())
@@ -238,7 +243,11 @@ const NewPaletteForm = ({ palettes, classes, savePalette, history }) => {
         <div className={classes.drawerHeader} />
 
         {colors.map(color => (
-          <DraggableColorBox color={color} />
+          <DraggableColorBox
+            key={color.name}
+            color={color}
+            handleDelete={() => handleDelete(color.name)}
+          />
         ))}
       </main>
     </div>
