@@ -19,15 +19,17 @@ function App() {
     setPalettes([...palettes, newPalette]);
   };
 
-  console.log(palettes);
-
   return (
     <Switch>
       <Route
         exact
         path="/palette/new"
         render={routeProps => (
-          <NewPaletteForm savePalette={savePalette} {...routeProps} />
+          <NewPaletteForm
+            savePalette={savePalette}
+            {...routeProps}
+            palettes={palettes}
+          />
         )}
       />
 
