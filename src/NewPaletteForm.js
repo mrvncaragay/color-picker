@@ -76,7 +76,7 @@ const styles = theme => ({
   }
 });
 
-const NewPaletteForm = ({ classes }) => {
+const NewPaletteForm = ({ classes, savePalette, history }) => {
   const [open, setOpen] = useState(true);
   const [color, setColor] = useState("teal");
   const [colors, setColors] = useState([]);
@@ -107,6 +107,16 @@ const NewPaletteForm = ({ classes }) => {
     setNewName(e.target.value);
   };
 
+  const handdleSavePalette = () => {
+    const newPalette = {
+      id: "New-Test-Palette",
+      paletteName: "New Test Palette",
+      colors
+    };
+    savePalette(newPalette);
+    history.push("/");
+  };
+
   useEffect(() => {
     ValidatorForm.addValidationRule("isColorNameUnique", value =>
       colors.every(({ name }) => name.toLowerCase() !== value.toLowerCase())
@@ -121,6 +131,7 @@ const NewPaletteForm = ({ classes }) => {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
+        color="default"
         position="fixed"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open
@@ -139,6 +150,14 @@ const NewPaletteForm = ({ classes }) => {
           <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
+
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handdleSavePalette}
+          >
+            Save Palette
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -200,7 +219,7 @@ const NewPaletteForm = ({ classes }) => {
         <div className={classes.drawerHeader} />
 
         {colors.map(color => (
-          <DraggableColorBox color={color.color} name={color.name} />
+          <DraggableColorBox color={color} />
         ))}
       </main>
     </div>

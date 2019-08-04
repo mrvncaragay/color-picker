@@ -4,7 +4,6 @@ export default {
     borderRadius: "5px",
     padding: "0.5rem",
     position: "relative",
-    overflow: "hidden",
     "&:hover": {
       cursor: "pointer;"
     }
@@ -14,8 +13,7 @@ export default {
     backgroundColor: "#dae1e4",
     height: "150px",
     width: "100%",
-    borderRadius: "5px",
-    overflow: "hidden"
+    borderRadius: "5px"
   },
 
   title: {
