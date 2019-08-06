@@ -67,6 +67,10 @@ const PaletteFormNav = ({
     setFormShowing(true);
   };
 
+  const handleHideForm = () => {
+    setFormShowing(false);
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -114,6 +118,7 @@ const PaletteFormNav = ({
           <PaletteMetaForm
             handdleSavePalette={handdleSavePalette}
             palettes={palettes}
+            handleHideForm={handleHideForm}
           />
         )}
       </AppBar>

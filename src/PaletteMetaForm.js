@@ -7,20 +7,12 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
-const PaletteMetaForm = ({ handdleSavePalette, palettes }) => {
-  const [open, setOpen] = React.useState(true);
+const PaletteMetaForm = ({ handdleSavePalette, palettes, handleHideForm }) => {
+  const [open] = React.useState(true);
   const [newPaletteName, setPaletteName] = useState("");
 
   const handleChangePalette = e => {
     setPaletteName(e.target.value);
-  };
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
   };
 
   useEffect(() => {
@@ -36,7 +28,7 @@ const PaletteMetaForm = ({ handdleSavePalette, palettes }) => {
     <div>
       <Dialog
         open={open}
-        onClose={handleClose}
+        onClose={handleHideForm}
         aria-labelledby="draggable-dialog-title"
       >
         <DialogTitle style={{ cursor: "move" }} id="draggable-dialog-title">
@@ -61,7 +53,7 @@ const PaletteMetaForm = ({ handdleSavePalette, palettes }) => {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleClose} color="primary">
+            <Button onClick={handleHideForm} color="primary">
               Cancel
             </Button>
             <Button type="submit" variant="contained" color="primary">
