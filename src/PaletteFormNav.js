@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
@@ -26,6 +26,7 @@ const styles = theme => ({
     }),
     flexDirecton: "row",
     justifyContent: "space-between",
+    // alignItems: "center",
     height: "64px"
   },
   appBarShift: {
@@ -37,10 +38,20 @@ const styles = theme => ({
     })
   },
   menuButton: {
-    marginRight: theme.spacing(2)
+    marginRight: 20,
+    marginLeft: 12
   },
 
-  navBtns: {}
+  navBtns: {
+    marginRight: "1rem",
+    marginLeft: "auto",
+    "& a": {
+      textDecoration: "none"
+    }
+  },
+  button: {
+    margin: "0 0.5rem"
+  }
 });
 
 const PaletteFormNav = ({
@@ -50,6 +61,12 @@ const PaletteFormNav = ({
   handleDrawerOpen,
   handdleSavePalette
 }) => {
+  const [formShowing, setFormShowing] = useState(false);
+
+  const handleShowForm = () => {
+    setFormShowing(true);
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -73,18 +90,32 @@ const PaletteFormNav = ({
           <Typography variant="h6" noWrap>
             Create A Palette
           </Typography>
+          <div className={classes.navBtns}>
+            <Link to="/">
+              <Button
+                variant="contained"
+                color="secondary"
+                className={classes.button}
+              >
+                Go Back
+              </Button>
+            </Link>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleShowForm}
+              className={classes.button}
+            >
+              Save
+            </Button>
+          </div>
         </Toolbar>
-        <div className={classes.navBtns}>
+        {formShowing && (
           <PaletteMetaForm
             handdleSavePalette={handdleSavePalette}
             palettes={palettes}
           />
-          <Link to="/">
-            <Button variant="contained" color="secondary">
-              Go Back
-            </Button>
-          </Link>
-        </div>
+        )}
       </AppBar>
     </div>
   );
