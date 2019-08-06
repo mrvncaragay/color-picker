@@ -23,10 +23,6 @@ const PaletteFormNav = ({
     setPaletteName(e.target.value);
   };
 
-  const handleSubmit = () => {
-    handdleSavePalette(newPaletteName);
-  };
-
   useEffect(() => {
     ValidatorForm.addValidationRule("isPaletteNameUnique", value =>
       palettes.every(
@@ -60,7 +56,7 @@ const PaletteFormNav = ({
             Persistent drawer
           </Typography>
 
-          <ValidatorForm onSubmit={handleSubmit}>
+          <ValidatorForm onSubmit={() => handdleSavePalette(newPaletteName)}>
             <TextValidator
               label="Palette Name"
               value={newPaletteName}
