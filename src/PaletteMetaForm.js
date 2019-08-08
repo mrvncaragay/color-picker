@@ -3,7 +3,6 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { ValidatorForm, TextValidator } from "react-material-ui-form-validator";
 
@@ -37,20 +36,15 @@ const PaletteMetaForm = ({ handdleSavePalette, palettes, handleHideForm }) => {
         </DialogTitle>
         <ValidatorForm onSubmit={() => handdleSavePalette(newPaletteName)}>
           <DialogContent>
-            <DialogContentText>
-              <TextValidator
-                label="Palette Name"
-                value={newPaletteName}
-                fullWidth
-                margin="normal"
-                onChange={handleChangePalette}
-                validators={["required", "isPaletteNameUnique"]}
-                errorMessages={[
-                  "Enter a Palette name",
-                  "Palette already used!"
-                ]}
-              />
-            </DialogContentText>
+            <TextValidator
+              label="Palette Name"
+              value={newPaletteName}
+              fullWidth
+              margin="normal"
+              onChange={handleChangePalette}
+              validators={["required", "isPaletteNameUnique"]}
+              errorMessages={["Enter a Palette name", "Palette already used!"]}
+            />
           </DialogContent>
           <DialogActions>
             <Button onClick={handleHideForm} color="primary">
