@@ -2,9 +2,7 @@ import sizes from "./sizes";
 
 export default {
   Palette: {
-    height: "100vh",
-    overflowY: "hidden",
-    overflowX: "hidden"
+    height: "100vh"
   },
 
   colors: {

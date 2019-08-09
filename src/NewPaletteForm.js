@@ -21,7 +21,7 @@ const NewPaletteForm = ({ palettes, classes, savePalette, history }) => {
   const [defaultData] = useState({
     MAX_COLORS: 20
   });
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const [colors, setColors] = useState(palettes[0].colors);
 
   const handleDrawerOpen = () => {
