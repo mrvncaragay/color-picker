@@ -7,7 +7,7 @@ import { withStyles } from "@material-ui/styles";
 // Component Styles
 import styles from "./styles/PaletteListStyles";
 
-const PaletteList = ({ classes, palettes, history }) => {
+const PaletteList = ({ classes, palettes, history, deletePalette }) => {
   const goToPalette = id => {
     history.push(`/palette/${id}`);
   };
@@ -25,7 +25,9 @@ const PaletteList = ({ classes, palettes, history }) => {
             <CSSTransition key={palette.id} classNames="fade" timeout={500}>
               <MiniPalalette
                 {...palette}
+                palettes={palettes}
                 handleClick={() => goToPalette(palette.id)}
+                deletePalette={deletePalette}
               />
             </CSSTransition>
           ))}
